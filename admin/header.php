@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Blog| Starter</title>
+  <title>AP Shopping</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -36,7 +36,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $link_array = explode('/',$link);
         $page = end($link_array);
     ?>
-    <form class="form-inline ml-3" method="post" action="<?php echo $page == 'index.php'? 'index.php':'user_list.php';?>">
+    <form class="form-inline ml-3" method="post"
+    <?php if ($page == 'index.php') :?>
+      action ="index.php"
+    <?php elseif($page == 'category.php'): ?>
+      action="category.php"
+    <?php elseif($page == 'user_list.php'): ?>
+      action = "user_list.php"
+    <?php endif; ?>
+        >
+
       <input name="_token" type="hidden" value="<?php echo $_SESSION['_token']; ?>">
 
       <div class="input-group input-group-sm">
@@ -59,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Blog Panel</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -67,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="images/user.png" class="img-circle elevation-2 bg-white" alt="User Image">
+          <img src="user.png" class="img-circle elevation-2 bg-white" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['user_name'] ?></a>
@@ -84,7 +93,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Blogs
+                Product
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="category.php" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Category
               </p>
             </a>
           </li>
@@ -93,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="user_list.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Users
+                User
               </p>
             </a>
           </li>
