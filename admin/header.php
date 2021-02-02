@@ -36,6 +36,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $link_array = explode('/',$link);
         $page = end($link_array);
     ?>
+
+    <?php   if($page != 'order_list.php'){ ?>
     <form class="form-inline ml-3" method="post"
     <?php if ($page == 'index.php') :?>
       action ="index.php"
@@ -57,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </form>
-
+    <?php   } ?>
    
   </nav>
   <!-- /.navbar -->
@@ -112,6 +114,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-user"></i>
               <p>
                 User
+              </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a href="order_list.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Order
               </p>
             </a>
           </li>
