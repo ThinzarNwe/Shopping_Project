@@ -66,13 +66,13 @@ if ($_POST) {
 
       move_uploaded_file($_FILES['image']['tmp_name'], $file);
 
-      $stmt = $pdo->prepare("UPDATE products SET name='$name',description='$description',category_id='
-                            $category',quantity='$qty',price='$price',image='$image' WHERE id='$id'");
-      $result = $stmt->execute();
+      $stmt = $pdo->prepare("UPDATE products SET name=:name,description=:description,category_id=:category, price=:price,quantity=:quantity,image=:image WHERE id=:id");
+          
+        $result = $stmt->execute(array(':name'=>$name,':description'=>$description,':category'=>$category,':quantity'=>$qty,':price'=>$price,':image'=>$image,':id'=>$id));
 
-      if($result) {
-          echo "<script>alert('Product is updated');window.location.href='index.php';</script>";
-      }
+        if($result) {
+            echo "<script>alert('Product is updated');window.location.href='index.php';</script>";
+        }
     }
   }else{
         
@@ -81,12 +81,11 @@ if ($_POST) {
         $category = $_POST['category'];
         $qty = $_POST['quantity'];
         $price = $_POST['price'];
+        $id = $_POST['id'];
 
-        $stmt = $pdo->prepare("UPDATE products SET name=:name,description=:description,category_id=:category,quantity=:quantity price=:price");
+        $stmt = $pdo->prepare("UPDATE products SET name=:name,description=:description,category_id=:category, price=:price,quantity=:quantity WHERE id=:id");
           
-        $result = $stmt->execute(
-          array (':name'=>$name,':description'=>$description,':category'=>$category,'
-                  :quantity'=>$qty, ':price'=>$price,));
+        $result = $stmt->execute(array(':name'=>$name,':description'=>$description,':category'=>$category,':quantity'=>$qty,':price'=>$price,':id'=>$id));
 
         if($result) {
             echo "<script>alert('Product is updated');window.location.href='index.php';</script>";
