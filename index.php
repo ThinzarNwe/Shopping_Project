@@ -1,4 +1,4 @@
-<?php include('header.html') ?>
+<?php include('header.php') ?>
 				<!-- End Filter Bar -->
 				<!-- Start Best Seller -->
 				<section class="lattest-product-area pb-40 category-list">
