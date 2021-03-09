@@ -1,7 +1,7 @@
 <?php include('header.php') ?>
 
 <?php 
-    
+   
 	require 'config/config.php';
 
 
@@ -22,7 +22,15 @@
 	            $stmt = $pdo->prepare("SELECT * FROM products ORDER BY id DESC LIMIT $offset,$numOfrecs");
 	            $stmt->execute();
 	            $result = $stmt->fetchAll();
-	         }else{
+
+	            if ($_GET) {
+	            	$stmt = $pdo->prepare("SELECT * FROM products WHERE category_id=".$_GET['id']);
+	            	$stmt->execute();
+	            	$result = $stmt->fetchAll();
+	            }
+	         }
+	         
+	         else{
 	            $searchKey = $_POST['search'] ? $_POST['search'] : $_COOKIE['search'];
 	            $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE '%searchKey' ORDER BY id DESC");
 	            $stmt->execute();
@@ -50,11 +58,14 @@
 								$catREsult = $catstmt->fetchAll();
 							 ?>
 							 <?php foreach ($catREsult as $key => $value) { ?>
-							<a data-toggle="collapse" href="#"><span
+							<a href="index.php?id=<?php echo $value['id'] ?>"><span
 								 class="lnr lnr-arrow-right"></span><?php echo escape($value['name']) ?></a>
 							<?php  }  ?>
+
+								
 						</li>
 					</ul>
+					 
 				</div>
 			</div>
 			<div class="col-xl-9 col-lg-8 col-md-7">
@@ -79,7 +90,9 @@
 						foreach ($result as $key => $value) { ?>
 						<div class="col-lg-4 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="admin/images/<?php echo escape($value['image']) ?> " style="height: 300px;" alt="">
+							<a href="product_detail.php?id=<?php echo $value['id'] ?>">
+								<img class="img-fluid" src="admin/images/<?php echo escape($value['image']) ?> " style="height: 300px;" alt="">
+							</a>
 							<div class="product-details">
 								<h6 style="margin-left: 35px;"><?php echo escape($value['name']) ?></h6>
 								<div class="price">
@@ -90,7 +103,7 @@
 										<span class="ti-bag"></span>
 										<p class="hover-text">add to bag</p>
 									</a>
-									<a href="" class="social-info">
+									<a href="product_detail.php?id=<?php echo $value['id'] ?>" class="social-info">
 										<span class="lnr lnr-move"></span>
 										<p class="hover-text">view more</p>
 									</a>

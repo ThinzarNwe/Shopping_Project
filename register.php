@@ -7,7 +7,7 @@ require 'config/common.php';
 if ($_POST) {
 	
 
-	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['phone']) || empty($_POST['address']) || empty($_POST['password']) || strlen($_POST['password']) < 4 ) {
+	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['phone']) || empty($_POST['address']) || empty($_POST['password']) || strlen($_POST['password']) < 4 )) {
 		if (empty($_POST['name'])) {
 			$nameError = 'Name is required';
 		}
@@ -30,6 +30,7 @@ if ($_POST) {
 			$passwordError ="Password should be 4 chars at least";
 		}
 	}else{
+	
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
