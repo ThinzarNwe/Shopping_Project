@@ -2,9 +2,7 @@
 session_start();
 require 'config/common.php';
 
-if(empty($_SESSION['user_id']) && empty($_SESSION['logged_in'])){
-  header('Location: login.php');
-}
+
  ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">

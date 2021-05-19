@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -37,7 +38,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $page = end($link_array);
     ?>
 
-    <?php   if($page != 'order_list.php'){ ?>
+    <?php   if($page != 'order_list.php' && $page != 'weekly_report.php' && $page != 'monthly_report.php'
+                && $page != 'royal_customer.php' && $page != 'best_seller.php'){ ?>
     <form class="form-inline ml-3" method="post"
     <?php if ($page == 'index.php') :?>
       action ="index.php"
@@ -125,6 +127,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Order
               </p>
             </a>
+          </li>
+
+          <li class="nav-item has-treeview menu">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Reports
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="weekly_report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Weekly Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="monthly_report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="royal_customer.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Royal Customer</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="best_seller.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Best Seller</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
         </ul>
       </nav>
