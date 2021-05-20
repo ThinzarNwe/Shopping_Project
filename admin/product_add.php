@@ -17,6 +17,7 @@ if ($_SESSION['role'] != 1) {
 
 if ($_POST) {
 
+
   if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['category']) 
       || empty($_POST['quantity']) || empty($_POST['price']) || empty($_FILES['image'])) {
     if(empty($_POST['name'])){
@@ -32,6 +33,7 @@ if ($_POST) {
 
     if(empty($_POST['quantity'])){
       $qtyError = 'Quantity cannot be null';
+      
     }elseif(is_numeric($_POST['quantity']) !=1){
       $qtyError = 'Quantity should be integer value';
     }
@@ -47,8 +49,15 @@ if ($_POST) {
     }
 
   }else{
-    $file = 'images/'.($_FILES['image']['name']);
-    $imageType = pathinfo($file,PATHINFO_EXTENSION);
+    if (is_numeric($_POST['quantity']) != 1) {
+        $qtyError = 'Quantity should be integer value';
+    }
+    if (is_numeric($_POST['price']) != 1) {
+        $priceError = 'Price should be integer value';
+    }
+    if ($qtyError == '' && $priceError == '') {
+        $file = 'images/'.($_FILES['image']['name']);
+        $imageType = pathinfo($file,PATHINFO_EXTENSION);
 
     if($imageType != 'jpg' && $imageType != 'jpeg' && $imageType != 'png') {
       echo "<script>alert('Image should be jpg,jpeg,png');</script>";
@@ -72,6 +81,7 @@ if ($_POST) {
         }
       
 
+    }
     }
   }
 }
@@ -117,7 +127,7 @@ if ($_POST) {
 
                   <div class="form-group">
                     <label for="">Quantity</label><p class="text-danger"><?php echo empty($qtyError) ? '' : '*'. $qtyError ?></p>
-                    <input type="number" name="quantity" class="form-control" value="">
+                    <input type="text" name="quantity" class="form-control" value="">
                   </div>
 
                   <div class="form-group">

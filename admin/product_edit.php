@@ -49,9 +49,18 @@ if ($_POST) {
     }
 
   }else{
-    if($_FILES['image']['name'] != null){
-    $file = 'images/'.($_FILES['image']['name']);
-    $imageType = pathinfo($file,PATHINFO_EXTENSION);
+    if (is_numeric($_POST['quantity']) != 1) {
+        $qtyError = 'Quantity should be integer value';
+    }
+    if (is_numeric($_POST['price']) != 1) {
+        $priceError = 'Price should be integer value';
+    }
+    if ($qtyError == '' && $priceError == '') {
+      print_r($qtyError);
+      exit();
+       if($_FILES['image']['name'] != null){
+        $file = 'images/'.($_FILES['image']['name']);
+        $imageType = pathinfo($file,PATHINFO_EXTENSION);
 
     if($imageType != 'jpg' && $imageType != 'jpeg' && $imageType != 'png') {
       echo "<script>alert('Image should be jpg,jpeg,png');</script>";
@@ -90,6 +99,8 @@ if ($_POST) {
         if($result) {
             echo "<script>alert('Product is updated');window.location.href='index.php';</script>";
         }
+      }
+
     }
   }
 }

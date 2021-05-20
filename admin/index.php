@@ -32,7 +32,7 @@ if ($_POST) {
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Blog Listing</h3>
+                <h3 class="card-title">Product Listing</h3>
               </div>
               <?php 
                 if (!empty($_GET['pageno'])){
@@ -128,15 +128,19 @@ if ($_POST) {
                    
                   </tbody>
                 </table> <br>
-                <nav aria-label="Page navigation example" style="float: right;">
+                 <nav aria-label="Page navigation example" style="float:right;margin-right: 0px">
                   <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="?pageno=1">First</a></li>
-                    <li class="page-item <?php if($pageno <= 1){echo 'disabled';} ?>"><a class="page-link" href="<?php if($pageno <= 1){echo'#';}else{echo "?pageno=".($pageno-1);} ?>">Previous</a></li>
+                    <li class="page-item <?php if($pageno <= 1){ echo 'disabled';} ?>">
+                      <a class="page-link" href="<?php if($pageno <= 1) {echo '#';}else{ echo "?pageno=".($pageno-1);}?>">Previous</a>
+                    </li>
                     <li class="page-item"><a class="page-link" href="#"><?php echo $pageno; ?></a></li>
-                    <li class="page-item <?php if($pageno >= $total_pages){echo 'disable';} ?> "><a class="page-link" href="<?php if($pageno >= $total_pages){echo '#';}else{echo"?pageno=".($pageno+1);} ?>">Next</a></li>
+                    <li class="page-item <?php if($pageno >= $total_pages){ echo 'disabled';} ?>">
+                      <a class="page-link" href="<?php if($pageno >= $total_pages) {echo '#';}else{ echo "?pageno=".($pageno+1);}?>">Next</a>
+                    </li>
                     <li class="page-item"><a class="page-link" href="?pageno=<?php echo $total_pages?>">Last</a></li>
                   </ul>
-            </nav>
+                </nav>
               </div>
               <!-- /.card-body -->
             </div>
